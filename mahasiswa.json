@@ -1,26 +1,37 @@
 {
-    "mahasiswa": [
-        {
-            "id" : 1,
-            "nrp": "05111740000067",
-            "nama": "Muhammad Iqbal Imani Atfan",
-            "angkatan": "2017",
-            "jk": "Laki-laki",
-            "lahir": "23-0201999",
-            "ukt": "2.5000.0000",
-            "foto": " ",
-            "aktif": true
-        },
-        {
-            "id" : 2,
-            "nrp": "05111740000067",
-            "nama": "Iotatfan",
-            "angkatan": "2017",
-            "jk": "Laki-laki",
-            "lahir": "23-0201999",
-            "ukt": "2.5000.0000",
-            "foto": " ",
-            "aktif": true
-        }
-    ]
+  "mahasiswa": [
+    {
+      "id": 1,
+      "nrp": "05111740000067",
+      "nama": "Muhammad Iqbal Imani Atfan",
+      "angkatan": "2017",
+      "jk": "Laki-laki",
+      "lahir": "23-0201999",
+      "ukt": "2.5000.0000",
+      "foto": " ",
+      "aktif": true
+    },
+    {
+      "id": 2,
+      "nrp": "05111740000067",
+      "nama": "Iotatfan",
+      "angkatan": "2017",
+      "jk": "Laki-laki",
+      "lahir": "23-0201999",
+      "ukt": "2.5000.0000",
+      "foto": " ",
+      "aktif": true
+    },
+    {
+      "id": 3,
+      "nrp": "",
+      "nama": "",
+      "angkatan": "",
+      "jk": "",
+      "lahir": "",
+      "ukt": "",
+      "foto": "",
+      "aktif": ""
+    }
+  ]
 }

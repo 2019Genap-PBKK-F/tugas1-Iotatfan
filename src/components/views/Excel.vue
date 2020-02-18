@@ -4,7 +4,6 @@
     <div>
         <input type="button" value="Add New Row" @click="() => spreadsheet.insertRow()" />
         <input type="button" value="Delete Selected Row" @click="() => spreadsheet.deleteRow()" />
-        <input type="button" value="Update Selected Row" @click="() => spreadsheet.updateSelection()" />
     </div>
     <ul v-for="user in mahasiswa" :key="user.id">
       <li>
@@ -42,7 +41,18 @@ export default {
   name: 'App',
   data() {
     return {
-      mahasiswa: []
+      mahasiswa: [],
+      form: {
+        id: '',
+        nrp: '',
+        nama: '',
+        angkatan: '',
+        jk: '',
+        lahir: '',
+        ukt: '',
+        foto: '',
+        aktif: ''
+      }
     }
   },
   mounted() {
@@ -57,6 +67,22 @@ export default {
       }).catch((err) => {
         console.log(err)
       })
+    },
+    newRow() {
+      axios.post('http://iodb.moe:3000/mahasiswa/', this.form).then(res => {
+        console.log(res.data)
+      })
+    },
+    // updateRow(form, x, y) {
+    //   var temp = []
+    //   axios.get('http://iodb.moe:3000/mahasiswa/' + form.id).then(res => {
+    //   })
+    // },
+    deleteRow(instance, id) {
+      axios.get('http://iodb.moe:3000/mahasiswa/').then(res => {
+        var index = Object.values(res.data[id])
+        axios.delete('http://iodb.moe:3000/mahasiswa/' + index[0])
+      })
     }
   },
   computed: {
@@ -64,7 +90,10 @@ export default {
       return {
         data: this.mahasiswa,
         allowToolbar: true,
-        url: 'http://iodb.moe:3000/mahasiswa',
+        url: 'http://iodb.moe:3000/mahasiswa/',
+        onchange: this.update,
+        oninsertrow: this.newRow,
+        ondeleterow: this.deleteRow,
         columns: [
           { type: 'hidden', title: 'id', width: '10px' },
           { type: 'text', title: 'NRP', width: '120px' },
