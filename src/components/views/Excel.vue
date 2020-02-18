@@ -3,35 +3,81 @@
     <div id="app" ref="spreadsheet"></div>
     <div>
         <input type="button" value="Add New Row" @click="() => spreadsheet.insertRow()" />
-        <input type="button" value="Delete Selected Row" @click="() => spreadsheet.deleteRow()" /></div>
+        <input type="button" value="Delete Selected Row" @click="() => spreadsheet.deleteRow()" />
+        <input type="button" value="Update Selected Row" @click="() => spreadsheet.updateSelection()" />
+    </div>
+    <ul v-for="user in mahasiswa" :key="user.id">
+      <li>
+        <span>{{user.nrp}} | {{user.nama}} | {{user.nrp}} | {{user.angkatan}} | {{user.jk}} | {{user.lahir}} | Rp {{user.ukt}} </span>&#160;
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 import jexcel from 'jexcel'
 import 'jexcel/dist/jexcel.css'
-var data = [
-  ['05111740000067', 'Muhammad Iqbal Imani Atfan', '2017', 'Laki-laki', '23-02-1999', 'Rp 2.500.000,00', '', true]
-]
-var options = {
-  data: data,
-  allowToolbar: true,
-  columns: [
-    { type: 'text', title: 'NRP', width: '120px' },
-    { type: 'text', title: 'Nama', width: '200px' },
-    { type: 'text', title: 'Angkatan', width: '80px' },
-    { type: 'dropdown', title: 'Jenis Kelamin', width: '120px', source: [ 'Laki-laki', 'Perempuan' ], autocomplete: true },
-    { type: 'calendar', title: 'Tanggal Lahir', width: '120px' },
-    { type: 'numeric', title: 'UKT', width: '120px', mask: 'Rp #.##,00', decimal: ',' },
-    { type: 'image', title: 'Photo', width: '120px' },
-    { type: 'checkbox', title: 'Aktif', width: '80px' }
-  ]
-}
+import axios from 'axios'
+
+// var data = [
+//   ['05111740000067', 'Muhammad Iqbal Imani Atfan', '2017', 'Laki-laki', '23-02-1999', 'Rp 2.500.000,00', '', true]
+// ]
+// var options = {
+//   data: mahasiswa,
+//   allowToolbar: true,
+//   columns: [
+//     { type: 'hidden', title: 'id', width: '10px'},
+//     { type: 'text', title: 'NRP', width: '120px' },
+//     { type: 'text', title: 'Nama', width: '200px' },
+//     { type: 'text', title: 'Angkatan', width: '80px' },
+//     { type: 'dropdown', title: 'Jenis Kelamin', width: '120px', source: [ 'Laki-laki', 'Perempuan' ], autocomplete: true },
+//     { type: 'calendar', title: 'Tanggal Lahir', width: '120px' },
+//     { type: 'numeric', title: 'UKT', width: '120px', mask: 'Rp #.##,00', decimal: ',' },
+//     { type: 'image', title: 'Photo', width: '120px' },
+//     { type: 'checkbox', title: 'Aktif', width: '80px' }
+//   ]
+// }
+
 export default {
   name: 'App',
-  mounted: function () {
-    let spreadsheet = jexcel(this.$el, options)
+  data() {
+    return {
+      mahasiswa: []
+    }
+  },
+  mounted() {
+    this.load()
+    let spreadsheet = jexcel(this.$el, this.jexcelOptions)
     Object.assign(this, { spreadsheet })
+  },
+  methods: {
+    load() {
+      axios.get('http://iodb.moe:3000/mahasiswa').then(res => {
+        this.mahasiswa = Object.values(res.data) // data dari API masukin ke mahasiswa
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
+  },
+  computed: {
+    jexcelOptions() {
+      return {
+        data: this.mahasiswa,
+        allowToolbar: true,
+        url: 'http://iodb.moe:3000/mahasiswa',
+        columns: [
+          { type: 'hidden', title: 'id', width: '10px' },
+          { type: 'text', title: 'NRP', width: '120px' },
+          { type: 'text', title: 'Nama', width: '200px' },
+          { type: 'text', title: 'Angkatan', width: '80px' },
+          { type: 'dropdown', title: 'Jenis Kelamin', width: '120px', source: [ 'Laki-laki', 'Perempuan' ], autocomplete: true },
+          { type: 'calendar', title: 'Tanggal Lahir', width: '120px' },
+          { type: 'numeric', title: 'UKT', width: '120px', mask: 'Rp #.##,00', decimal: ',' },
+          { type: 'image', title: 'Photo', width: '120px' },
+          { type: 'checkbox', title: 'Aktif', width: '80px' }
+        ]
+      }
+    }
   }
 }
 </script>
