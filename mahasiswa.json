@@ -7,7 +7,7 @@
       "angkatan": "2017",
       "jk": "Laki-laki",
       "lahir": "23-0201999",
-      "ukt": "2.5000.0000",
+      "ukt": "Rp 2.500.000",
       "foto": " ",
       "aktif": true
     },
@@ -18,12 +18,34 @@
       "angkatan": "2017",
       "jk": "Laki-laki",
       "lahir": "23-0201999",
-      "ukt": "2.5000.0000",
+      "ukt": "Rp 2.500.000",
       "foto": " ",
       "aktif": true
     },
     {
       "id": 3,
+      "nrp": "05111740000067",
+      "nama": "Dreamcast",
+      "angkatan": "2017",
+      "jk": "Perempuan",
+      "lahir": "1999-02-23 00:00:00",
+      "ukt": "Rp 2.500.000",
+      "foto": "",
+      "aktif": true
+    },
+    {
+      "id": 5,
+      "nrp": "",
+      "nama": "",
+      "angkatan": "",
+      "jk": "",
+      "lahir": "",
+      "ukt": "",
+      "foto": "",
+      "aktif": ""
+    },
+    {
+      "id": 6,
       "nrp": "",
       "nama": "",
       "angkatan": "",
