@@ -34,10 +34,10 @@
       "aktif": true
     },
     {
-      "id": 5,
+      "id": 4,
       "nrp": "",
-      "nama": "",
-      "angkatan": "",
+      "nama": "Steam",
+      "angkatan": "1999",
       "jk": "",
       "lahir": "",
       "ukt": "",
@@ -45,7 +45,40 @@
       "aktif": ""
     },
     {
-      "id": 6,
+      "id": 7,
+      "nrp": "",
+      "nama": "Uplay",
+      "angkatan": "1999",
+      "jk": "",
+      "lahir": "",
+      "ukt": "",
+      "foto": "",
+      "aktif": ""
+    },
+    {
+      "id": 8,
+      "nrp": "",
+      "nama": "Origin",
+      "angkatan": "1999",
+      "jk": "",
+      "lahir": "",
+      "ukt": "",
+      "foto": "",
+      "aktif": ""
+    },
+    {
+      "id": 9,
+      "nrp": "",
+      "nama": "Epic",
+      "angkatan": "1999",
+      "jk": "",
+      "lahir": "",
+      "ukt": "",
+      "foto": "",
+      "aktif": ""
+    },
+    {
+      "id": 10,
       "nrp": "",
       "nama": "",
       "angkatan": "",

@@ -42,9 +42,8 @@ export default {
       })
     },
     updateRow(instance, cell, columns, row, value) {
-      // console.log(columns)
-      axios.get('http://iodb.moe:3000/mahasiswa/' + (parseInt(row) + 1)).then(res => {
-        var index = Object.values(res.data)
+      axios.get('http://iodb.moe:3000/mahasiswa/').then(res => {
+        var index = Object.values(res.data[row])
         index[columns] = value
         console.log(index)
         axios.put('http://iodb.moe:3000/mahasiswa/' + index[0], {
