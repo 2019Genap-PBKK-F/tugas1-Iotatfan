@@ -37,16 +37,16 @@ export default {
   },
   methods: {
     newRow() {
-      axios.post('http://iodb.moe:3000/mahasiswa/', this.form).then(res => {
+      axios.post('http://localhost:3000/mahasiswa/', this.form).then(res => {
         console.log(res.data)
       })
     },
     updateRow(instance, cell, columns, row, value) {
-      axios.get('http://iodb.moe:3000/mahasiswa/').then(res => {
+      axios.get('http://localhost:3000/mahasiswa/').then(res => {
         var index = Object.values(res.data[row])
         index[columns] = value
         console.log(index)
-        axios.put('http://iodb.moe:3000/mahasiswa/' + index[0], {
+        axios.put('http://localhost:3000/mahasiswa/' + index[0], {
           id: index[0],
           nrp: index[1],
           nama: index[2],
@@ -62,11 +62,11 @@ export default {
       })
     },
     deleteRow(instance, row) {
-      axios.get('http://iodb.moe:3000/mahasiswa/').then(res => {
+      axios.get('http://localhost:3000/mahasiswa/').then(res => {
         var index = Object.values(res.data[row])
         // console.log(index)
         console.log(row)
-        axios.delete('http://iodb.moe:3000/mahasiswa/' + index[0])
+        axios.delete('http://localhost:3000/mahasiswa/' + index[0])
       })
     }
   },
@@ -75,7 +75,7 @@ export default {
       return {
         data: this.mahasiswa,
         allowToolbar: true,
-        url: 'http://iodb.moe:3000/mahasiswa/',
+        url: 'http://localhost:3000/mahasiswa/',
         onchange: this.updateRow,
         oninsertrow: this.newRow,
         ondeleterow: this.deleteRow,
