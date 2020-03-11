@@ -47,11 +47,12 @@ export default {
 
       /* Making API call to authenticate a user */
       api
-        .request('post', '/login', { username, password })
+        .request('get', 'http://localhost:8080/kasironline/api.php/records/user?filter=' + username, {auth: { username, password }})
         .then(response => {
           this.toggleLoading()
 
           var data = response.data
+          console.log(data.ID_USER)
           /* Checking if error object was returned from the server */
           if (data.error) {
             var errorName = data.error.name

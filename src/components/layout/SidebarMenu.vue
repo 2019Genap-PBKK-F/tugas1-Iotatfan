@@ -13,10 +13,10 @@
         <span class="page">Excel</span>
       </a>
     </router-link>
-    <router-link tag="li" class="pageLink" to="/tables">
+    <router-link tag="li" class="pageLink" to="/chart">
       <a>
-        <i class="fa fa-table"></i>
-        <span class="page">Tables</span>
+        <i class="fa fa-desktop"></i>
+        <span class="page">Chart</span>
       </a>
     </router-link>
 

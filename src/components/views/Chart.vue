@@ -1,16 +1,13 @@
 <template>
   <div>
-    <div id="app" ref="spreadsheet"></div>
-    <div>
-        <input type="button" value="Add New Row" @click="() => spreadsheet.insertRow()" />
-        <input type="button" value="Delete Selected Row" @click="() => spreadsheet.deleteRow()" />
-    </div>
+    <div id="app" ref="chart"></div>
+    <canvas id="myChart" width="400" height="400">
+
+    </canvas>
   </div>
 </template>
 
 <script>
-import jexcel from 'jexcel'
-import 'jexcel/dist/jexcel.css'
 import axios from 'axios'
 
 var host = 'http://10.199.14.46:8012/'
@@ -39,26 +36,6 @@ export default {
     load() {
       axios.get(host + 'api/mahasiswa/').then(res => {
         console.log(res.data)
-        var jexcelOptions = {
-          data: res.data,
-          allowToolbar: true,
-          onchange: this.updateRow,
-          oninsertrow: this.newRow,
-          ondeleterow: this.deleteRow,
-          columns: [
-            { type: 'hidden', title: 'id', width: '10px' },
-            { type: 'text', title: 'NRP', width: '120px' },
-            { type: 'text', title: 'Nama', width: '200px' },
-            { type: 'text', title: 'Angkatan', width: '80px' },
-            { type: 'dropdown', title: 'Jenis Kelamin', width: '120px', source: [ 'Laki-laki', 'Perempuan' ] },
-            { type: 'calendar', title: 'Tanggal Lahir', width: '120px' },
-            { type: 'numeric', title: 'UKT', width: '120px', mask: 'Rp #.##,00', decimal: ',' },
-            { type: 'image', title: 'Photo', width: '120px' },
-            { type: 'checkbox', title: 'Aktif', width: '80px' }
-          ]
-        }
-        let spreadsheet = jexcel(this.$el, jexcelOptions)
-        Object.assign(this, { spreadsheet })
       })
     },
     newRow() {
