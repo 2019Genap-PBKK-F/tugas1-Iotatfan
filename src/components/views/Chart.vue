@@ -1,16 +1,20 @@
 <template>
   <div>
     <div id="app" ref="chart"></div>
-    <canvas id="myChart" width="400" height="400">
-
-    </canvas>
+    <div class="col-sm-4 col-xs-8">
+      <p class="text-center">
+        <strong>Jumlah Mahasiswa</strong>
+      </p>
+      <canvas id="genderChart"></canvas>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Chart from 'chart.js'
 
-var host = 'http://10.199.14.46:8012/'
+var host = 'http://localhost:8012/'
 
 export default {
   // name: 'App',
@@ -34,42 +38,36 @@ export default {
   },
   methods: {
     load() {
-      axios.get(host + 'api/mahasiswa/').then(res => {
-        console.log(res.data)
+      axios.get(host + 'api/gender/').then(res => {
+        console.log(res.data[0])
+        var genderChart = document.getElementById('genderChart')
+        var genderChartConfig = {
+          type: 'pie',
+          data: {
+            labels: ['Laki-Laki', 'Perempuan'],
+            datasets: [{
+              data: Object.values(res.data[0]),
+              backgroundColor: ['#00a65a', '#f39c12'],
+              hoverBackgroundColor: ['#00a65a', '#f39c12']
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: !this.isMobile,
+            legend: {
+              position: 'bottom',
+              display: true
+            }
+
+          }
+        }
+        new Chart(genderChart, genderChartConfig)  // eslint-disable-line no-new
       })
-    },
-    newRow() {
-      axios.post(host + 'api/mahasiswa/', this.form).then(res => {
-        console.log(res.data)
-      })
-    },
-    updateRow(instance, cell, columns, row, value) {
-      axios.get(host + 'api/mahasiswa/').then(res => {
-        var index = Object.values(res.data[row])
-        index[columns] = value
-        console.log(index)
-        axios.put(host + 'api/mahasiswa/' + index[0], {
-          id: index[0],
-          nrp: index[1],
-          nama: index[2],
-          angkatan: index[3],
-          jk: index[4],
-          lahir: index[5],
-          ukt: index[6],
-          foto: index[7],
-          aktif: index[8]
-        }).then(res => {
-          console.log(res.data)
-        })
-      })
-    },
-    deleteRow(instance, row) {
-      axios.get(host + 'api/mahasiswa').then(res => {
-        var index = Object.values(res.data[row])
-        // console.log(index)
-        console.log(row)
-        axios.delete(host + 'api/mahasiswa/' + index[0])
-      })
+    }
+  },
+  computed: {
+    isMobile () {
+      return (window.innerWidth <= 800 && window.innerHeight <= 600)
     }
   }
 }

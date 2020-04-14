@@ -19,6 +19,31 @@
         <span class="page">Chart</span>
       </a>
     </router-link>
+    <router-link tag="li" class="pageLink" to="/kategori-unit">
+      <a>
+        <i class="fa fa-desktop"></i>
+        <span class="page">Kategori Unit</span>
+      </a>
+    </router-link>
+    <router-link tag="li" class="pageLink" to="/data-dasar">
+      <a>
+        <i class="fa fa-desktop"></i>
+        <span class="page">Data Dasar</span>
+      </a>
+    </router-link>
+    <router-link tag="li" class="pageLink" to="/unit">
+      <a>
+        <i class="fa fa-desktop"></i>
+        <span class="page">Unit</span>
+      </a>
+    </router-link>
+    <router-link tag="li" class="pageLink" to="/capaian-unit">
+      <a>
+        <i class="fa fa-desktop"></i>
+        <span class="page">Capaian Unit</span>
+      </a>
+    </router-link>
+    
 
     <li class="header">ME</li>
     <router-link tag="li" class="pageLink" to="/tasks">

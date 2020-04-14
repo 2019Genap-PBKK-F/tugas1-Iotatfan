@@ -12,6 +12,11 @@ import AccessView from './components/views/Access.vue'
 import ServerView from './components/views/Server.vue'
 import ReposView from './components/views/Repos.vue'
 
+import DataDasarView from './components/views/DataDasarView.vue'
+import UnitView from './components/views/UnitView.vue'
+import KategoriUnitView from './components/views/KategoriUnitVIew.vue'
+import CapaianUnitVIew from './components/views/CapaianUnitVIew.vue'
+
 // Routes
 const routes = [
   {
@@ -38,6 +43,26 @@ const routes = [
         component: ChartView,
         name: 'Chart',
         meta: {description: 'Chart in CoPilot'}
+      }, {
+        path: 'kategori-unit',
+        component: KategoriUnitView,
+        name: 'Kategori Unit',
+        meta: {description: 'Kategori Unit in CoPilot'}
+      }, {
+        path: 'data-dasar',
+        component: DataDasarView,
+        name: 'Data Dasar',
+        meta: {description: 'Data Dasar in CoPilot'}
+      }, {
+        path: 'unit',
+        component: UnitView,
+        name: 'Unit',
+        meta: {description: 'Unit in CoPilot'}
+      }, {
+        path: 'capaian-unit',
+        component: CapaianUnitVIew,
+        name: 'Capaian Unit',
+        meta: {description: 'Capaian Unit in CoPilot'}
       }, {
         path: 'tasks',
         component: TasksView,
